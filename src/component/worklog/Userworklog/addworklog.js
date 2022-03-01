@@ -1,55 +1,62 @@
 import React,{useState,useEffect} from 'react'
-import { Calender } from '../AdminWork/Calender';
+// import { Calender } from '../AdminWork/Calender';
+import {addUserRecord} from "../../../redux/action/UserAction"
+import { useDispatch, useSelector } from 'react-redux';
+import { dbstorage } from '../../../Firebase';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from "react-bootstrap";
+import "./Worklog.css"
+
 
 const Addworklog = () => {
-    
-  const [classData, setClassData] = useState("");
-  const [sectionData, setSectionData] = useState("");
-  const [classObj, setClassObj] = useState({});
-  const [sectionObj, setSectionObj] = useState({});
+  <ToastContainer position="top-center"
+  autoClose={5000}
+  hideProgressBar={false}
+  newestOnTop={false}
+  />
 
-  const [state, setState] = useState({
-    AssignmentTopic: "",
-    AssignmentNo: "",
-    WordCount: "",
+    const[username ,setUsername]=useState("")
+    const[topic ,setTopic]=useState("")
+    const[assignNo ,setAssignNo]=useState("")
+    const[wordcount ,setWordcount]=useState("")
+    const[deadline ,setDeadline]=useState("")
+    const[date ,setDate]=useState("")
+    const[discrip ,setDiscrip]=useState("")
+    const[image,setImage]=useState(null)
 
-    instruction: "",
-    date: "",
-    Discription: "",
-  });
-  const emptyState = () => {
-    setState({
-        AssignmentTopic: "",
-        AssignmentNo: "",
-    WordCount: "",
+    ///////////////image upload///////////////
+   /* const imgUpload=()=>{
+      const uploadtask= dbstorage.ref(`images/${image.name}`).put(image);
+      uploadtask.on(
+          "state changed",
+          snapshot=>{},
+          error=>{console.log(error)},
+          ()=>{
+              dbstorage.ref("images")
+              .child(image.name)
+              .getDownloadURL().then(url=>{console.log("url",url);
+          })
+          }
+  
+      )
+  }
+  */
+//////////////////////////////////////////////
 
-        instruction: "",
-         date: "",
-         Discription: "",
 
-    
-    });
-  };
+ 
+  const dispatch=useDispatch();
+  const data=useSelector((state)=>state?.alluserwork?.userworkdata);
+  console.log(data ,"data test")
 
-  const onHandleChange = (e) => {
-    if (e.target.name === "Assignment") setClassData(e.target.value);
-    if (e.target.name === "sections") setSectionData(e.target.value);
-    setState({
-      ...state,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  useEffect(() => {
-    // setClassObj(totalClasses.find((x) => x.classes === classData));
-  }, [classData]);
-
-  useEffect(() => {
-    // setSectionObj(totalSections.find((x) => x.sections === sectionData));
-  }, [sectionData]);
-
-  const addNewStudent = () => {
-    // dispatch(addStudentRecord(state, classObj, sectionObj, emptyState));
+  const adduserwork = (e) => {
+    e.preventDefault();
+    toast.success("successfuly submited");
+    // alert("Are you sure to submit your data?")
+    // console.log("image path",image);
+    // imgUpload();
+    dispatch(addUserRecord({topic,assignNo,wordcount,deadline,date,discrip,username}));
   };
   return (
   
@@ -67,6 +74,17 @@ const Addworklog = () => {
             Add WordCount
           </h4>
           <div className="row">
+          <div className="col-lg-3 col-md-4 form-group">
+              <label htmlFor="">User Name</label>
+              <input
+                type="text"
+                placeholder='Employee Name..'
+                className="form-control"
+                name="username"
+                value={username}
+                onChange={(e)=>{setUsername(e.target.value)}}
+              />
+            </div>
             <div className="col-lg-3 col-md-4 form-group">
               <label htmlFor="">Assignment Topic</label>
               <input
@@ -74,8 +92,8 @@ const Addworklog = () => {
                 placeholder='Assignment Topic...'
                 className="form-control"
                 name="AssignmentTopic"
-                value={state.AssignmentTopic}
-                onChange={onHandleChange}
+                value={topic}
+                onChange={(e)=>{ setTopic(e.target.value)}}
               />
             </div>
             <div className="col-lg-3 col-md-4 form-group">
@@ -84,8 +102,8 @@ const Addworklog = () => {
                 type="number"
                 className="form-control"
                 name="AssignmentNo"
-                value={state.AssignmentNo}
-                onChange={onHandleChange}
+                value={assignNo}
+                onChange={(e)=>{setAssignNo(e.target.value)}}
               />
             </div>
             <div className="col-lg-3 col-md-4 form-group">
@@ -94,26 +112,38 @@ const Addworklog = () => {
                 type="number"
                 className="form-control"
                 name="WordCount"
-                value={state.WordCount}
-                onChange={onHandleChange}
+                value={wordcount}
+                onChange={(e)=>{setWordcount(e.target.value)}}
               />
             </div>
             <div className="col-lg-3 col-md-4 form-group">
-              <label htmlFor="">Instruction</label>
+              <label htmlFor="">Deadline</label>
               <input
-                type="text"
+                type="date"
                 placeholder='Instruction about assignment..'
                 className="form-control"
                 name="instruction"
-                value={state.instruction}
-                onChange={onHandleChange}
+                value={deadline}
+                onChange={(e)=>{setDeadline(e.target.value)}}
               />
             </div>
+            
             <div className="col-lg-3 col-md-4 form-group">
-              <label htmlFor="">Assignment Date</label>
+              <label htmlFor="">Submission Date</label>
+              <input
+                type="date"
+                placeholder='Instruction about assignment..'
+                className="form-control"
+                name="instruction"
+                value={date}
+                onChange={(e)=>{setDate(e.target.value)}}
+              />
+            </div>
+            {/* <div className="col-lg-3 col-md-4 form-group">
+              <label htmlFor="">Subimistion Date</label>
 
               <Calender />
-            </div>
+            </div> */}
           </div>
           <div className="row">
             <div className="col-md-5 form-group">
@@ -122,8 +152,8 @@ const Addworklog = () => {
               <textarea
                 name="Discription"
                 placeholder='Discription....'
-                value={state.Discription}
-                onChange={onHandleChange}
+                value={discrip}
+                onChange={(e)=>{setDiscrip(e.target.value)}}
                 id=""
                 cols="50"
                 rows="6"
@@ -137,12 +167,17 @@ const Addworklog = () => {
                 type="file"
                 className="form-control"
                 style={{ background: "transparent" }}
+                onChange={(e)=>{
+                 if(e.target.files[0]){
+                   setImage(e.target.files[0])
+                 }
+                }}
               />
             </div>
           </div>
           <button
-            className="btn btn-success text-white"
-            onClick={addNewStudent}
+            className="btn btn-success text-white btnhover"
+            onClick={adduserwork}
           >
             Submit
           </button>

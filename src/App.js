@@ -6,6 +6,7 @@ import { AllRoutes } from './AllRoutes';
 function App() {
   return (
     <div className="app">
+      
    <AllRoutes/>
     </div>
   );

@@ -127,11 +127,11 @@ export const Admin = () => {
         </div>
 
  {/* admin work */}
- <div className="card mt-3">
+ <div className="card mt-2">
           <div className="card-body">
-            <h4 className="my-4" style={{ color: "darkgray" }}>
+            <h4 className="my-1" style={{ color: "darkgray" }}>
          Assignments      </h4>
-            <h4 className="my-4" style={{ color: "darkgray" }}></h4>
+            {/* <h4 className="my-4" style={{ color: "darkgray" }}></h4> */}
             <table
               className="table table-striped mx-auto"
               style={{ maxWidth: "850px" }}

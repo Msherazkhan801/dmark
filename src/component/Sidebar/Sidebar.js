@@ -59,7 +59,7 @@ export const Sidebar = () => {
               <Link to="/addstudent">Add User</Link>
             </li>
             <li>
-              <Link to="/totalstudents">Total User</Link>
+              <Link to="/dashboard/user/getworklog">Total User</Link>
             </li>
             <li>
               <Link to="/studentdetail">User Detail</Link>

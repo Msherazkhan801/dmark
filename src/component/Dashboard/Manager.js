@@ -16,7 +16,7 @@ const Manager = () => {
               </Link>
               <Link to=""
                 className="btn btn-warning ml-3 text-white">
-                Pick your Assignment              </Link>
+                Pick your Assignment</Link>
               <table
                 className="table table-striped mx-auto mt-3"
                 style={{ maxWidth: "850px" }}
