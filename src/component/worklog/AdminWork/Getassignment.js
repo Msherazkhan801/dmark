@@ -1,17 +1,18 @@
 import React, { useEffect, useState } from "react";
-import "./Worklog.css";
-import {fetchAllusers} from "../../../redux/action/GetworkAction"
+// import "./Worklog.css";
+import {fetchAllassignment} from "../../../redux/action/AdminAction/GetAssingment"
 import { useDispatch,useSelector } from "react-redux";
 import { Link } from "react-router-dom";
- const GetWorklog = () => {
+ const Getassignment = () => {
   const dispatch = useDispatch();
-  const totalUsers = useSelector((state) => state.userworkdata?.alluserwork);
-//   console.log("totalUsers...........", totalUsers);
+  const totalUsers=useSelector((state)=>state?.admindata?.allAssignment);
+
+  console.log("totalUsers...........", totalUsers);
   const [filterStudent, setFilterStudent] = useState([]);
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    dispatch(fetchAllusers());
+    dispatch(fetchAllassignment());
   }, []);
 
   useEffect(() => {
@@ -38,7 +39,7 @@ import { Link } from "react-router-dom";
           <div className="card-body">
             <h4 className="my-4" style={{ color: "darkgray" }}>
               {" "}
-              Total User Work
+              Active Assignment
             </h4>
             <div className="row no-gutters">
               <div className="col-md-3 form-group px-2">
@@ -74,17 +75,15 @@ import { Link } from "react-router-dom";
               </div>
             </div>
             <table
-              className="table table-striped"
-              style={{ marginTop: "30px" }}
+              className="table table-striped mx-auto"
+              style={{  marginTop: "30px" ,maxWidth:"1000px"}}
             >
               <thead>
                 <tr>
                   <th scope="col">S.No</th>
-                  <th scope="col">Employee Name</th>
                   <th scope="col">Assignment Topic</th>
                   <th scope="col">Assignment No</th>
                   <th scope="col">WordCount</th>
-                  <th scope="col">Submission Date</th>
                   <th scope="col">Deadline</th>
                   <th scope="col">Discription</th>
                   <th scope="col">Action</th>
@@ -94,19 +93,16 @@ import { Link } from "react-router-dom";
               <tbody>
                 {data?.map((user, i ) => {
                     
-                    // console.log(totalUsers,"data///")
                   return (
-                    <tr key={i}>
+                    <tr key={i} className="tabrow">
                       <td>{i+1}</td>
-                      <td > <Link to={`/dashboard/user/${user.id}`} style={{color:"black"}}>{user.username} </Link> </td>
                       <td>{user.topic}</td>
                       <td>{user.assignNo}</td>
                       <td>{user.wordcount}</td>
-                      <td>{user.date}</td>
                       <td>{user.deadline}</td>
-                      <td>{user.discrip}</td>
+                      <td >{user.discrip}</td>
                       <td>
-                    <i className="fa fa-eye ml-2" aria-hidden="true"></i>
+                      <Link to={`/dashboard/admin/getassignment/${user.id}`} style={{color:"black"}}> <i className="fa fa-eye ml-2" aria-hidden="true"></i></Link>
                     <i class="fa fa-pencil ml-2 " aria-hidden="true"></i>
                     <i className="fa fa-trash ml-2" aria-hidden="true"></i>
                   </td>
@@ -123,4 +119,4 @@ import { Link } from "react-router-dom";
   );
 };
 
-export  default GetWorklog;
+export  default Getassignment;

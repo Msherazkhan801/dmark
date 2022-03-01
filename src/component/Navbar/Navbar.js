@@ -9,7 +9,7 @@ export const Navbar = () => {
     <div>
       <nav className="navbar navbar-expand-md p-0">
         <Link
-          className="navbar  navbar-brand p-0"
+          className="navbar  navbar-brand p-0 "
           to="/"
           style={{ 
              fontSize: "26px", fontWeight: "600",

@@ -1,51 +1,29 @@
-import React,{useState,useEffect} from 'react'
-import { Calender } from './Calender';
+import React,{useState} from 'react'
+// import { Calender } from '../AdminWork/Calender';
+import {addAssignmentRecord} from "../../../redux/action/AdminAction/Addassignment"
+import { useDispatch, useSelector } from 'react-redux';
+// import { dbstorage } from '../../../../Firebase';
+import { toast } from 'react-toastify';
+
 
 const Addassignment = () => {
-    
-  const [classData, setClassData] = useState("");
-  const [sectionData, setSectionData] = useState("");
-  const [classObj, setClassObj] = useState({});
-  const [sectionObj, setSectionObj] = useState({});
 
-  const [state, setState] = useState({
-    AssignmentTopic: "",
-    AssignmentNo: "",
-    instruction: "",
-    date: "",
-    Discription: "",
-  });
-  const emptyState = () => {
-    setState({
-        AssignmentTopic: "",
-        AssignmentNo: "",
-        instruction: "",
-         date: "",
-         Discription: "",
+    const[topic ,setTopic]=useState("")
+    const[assignNo ,setAssignNo]=useState("")
+    const[wordcount ,setWordcount]=useState("")
+    const[deadline ,setDeadline]=useState("")
+    // const[date ,setDate]=useState("")
+    const[discrip ,setDiscrip]=useState("")
+ 
+  const dispatch=useDispatch();
+  const data=useSelector((state)=>state?.allAssignment?.admindata);
+  console.log(data ,"data test")
 
-    
-    });
-  };
-
-  const onHandleChange = (e) => {
-    if (e.target.name === "Assignment") setClassData(e.target.value);
-    if (e.target.name === "sections") setSectionData(e.target.value);
-    setState({
-      ...state,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  useEffect(() => {
-    // setClassObj(totalClasses.find((x) => x.classes === classData));
-  }, [classData]);
-
-  useEffect(() => {
-    // setSectionObj(totalSections.find((x) => x.sections === sectionData));
-  }, [sectionData]);
-
-  const addNewStudent = () => {
-    // dispatch(addStudentRecord(state, classObj, sectionObj, emptyState));
+  const adduserwork = (e) => {
+    e.preventDefault();
+    toast.success("successfuly submited");
+    alert("Are you sure to submit");
+    dispatch(addAssignmentRecord({topic,assignNo,wordcount,deadline,discrip,}));
   };
   return (
   
@@ -60,7 +38,7 @@ const Addassignment = () => {
           style={{ boxShadow: "0px 10px 20px 0px rgb(229 229 229 / 75%)" }}
         >
           <h4 className="my-4" style={{ color: "darkgray" }}>
-            Add New Assignment
+            Add New Assignment Detail
           </h4>
           <div className="row">
             <div className="col-lg-3 col-md-4 form-group">
@@ -70,8 +48,8 @@ const Addassignment = () => {
                 placeholder='Assignment Topic...'
                 className="form-control"
                 name="AssignmentTopic"
-                value={state.AssignmentTopic}
-                onChange={onHandleChange}
+                value={topic}
+                onChange={(e)=>{ setTopic(e.target.value)}}
               />
             </div>
             <div className="col-lg-3 col-md-4 form-group">
@@ -80,36 +58,41 @@ const Addassignment = () => {
                 type="number"
                 className="form-control"
                 name="AssignmentNo"
-                value={state.AssignmentNo}
-                onChange={onHandleChange}
+                value={assignNo}
+                onChange={(e)=>{setAssignNo(e.target.value)}}
               />
             </div>
             <div className="col-lg-3 col-md-4 form-group">
-              <label htmlFor="">Instruction</label>
+              <label htmlFor="">WordCount</label>
               <input
-                type="text"
+                type="number"
+                className="form-control"
+                name="WordCount"
+                value={wordcount}
+                onChange={(e)=>{setWordcount(e.target.value)}}
+              />
+            </div>
+            <div className="col-lg-3 col-md-4 form-group">
+              <label htmlFor="">Deadline</label>
+              <input
+                type="date"
                 placeholder='Instruction about assignment..'
                 className="form-control"
                 name="instruction"
-                value={state.instruction}
-                onChange={onHandleChange}
+                value={deadline}
+                onChange={(e)=>{setDeadline(e.target.value)}}
               />
-            </div>
-            <div className="col-lg-3 col-md-4 form-group">
-              <label htmlFor="">Assignment Date</label>
-
-              <Calender />
             </div>
           </div>
           <div className="row">
             <div className="col-md-5 form-group">
-              <label htmlFor="">Discription</label>
+              <label htmlFor="">Instruction</label>
               <br />
               <textarea
                 name="Discription"
-                placeholder='Discription....'
-                value={state.Discription}
-                onChange={onHandleChange}
+                placeholder='Instruction....'
+                value={discrip}
+                onChange={(e)=>{setDiscrip(e.target.value)}}
                 id=""
                 cols="50"
                 rows="6"
@@ -123,12 +106,17 @@ const Addassignment = () => {
                 type="file"
                 className="form-control"
                 style={{ background: "transparent" }}
+                onChange={(e)=>{
+                 if(e.target.files[0]){
+                  //  setImage(e.target.files[0])
+                 }
+                }}
               />
             </div>
           </div>
           <button
-            className="btn btn-success text-white"
-            onClick={addNewStudent}
+            className="btn btn-success text-white btnhover"
+            onClick={adduserwork}
           >
             Submit
           </button>
@@ -140,4 +128,4 @@ const Addassignment = () => {
   )
 }
 
-export default Addassignment
+export default Addassignment;

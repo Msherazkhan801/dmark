@@ -13,6 +13,12 @@ import GetWorklog from "./component/worklog/Userworklog/GetWorklog"
 import { ToastContainer } from "react-bootstrap";
 // import Login from "./Auth/login/index"
 import 'react-toastify/dist/ReactToastify.css';
+import {UserworkDetail} from "./component/worklog/Userworklog/UserworkDetail"
+import Getmanagerwork from "./component/worklog/Manager/worklog/Getmangerwork";
+import {ManagerkDetail} from "./component/worklog/Manager/worklog/ManagerDetail"
+import Getassignment from "./component/worklog/AdminWork/Getassignment";
+import { AssignmentDetail } from "./component/worklog/AdminWork/AssignmentDetail";
+
 export const AllRoutes = () => {
   return (
     <div>
@@ -26,6 +32,15 @@ export const AllRoutes = () => {
         <Route path="/dashboard/addworklog" element={<Addworklog />} />
         <Route path="/dashboard/manager/addworklog" element={<Addworklogs />} />
         <Route path="/dashboard/user/getworklog" element={<GetWorklog />} />
+        <Route path="/dashboard/manager/getmanagerworklog" element={<Getmanagerwork />} />
+        <Route path="/dashboard/admin/getassignment" element={<Getassignment />} />
+
+        <Route path="/dashboard/user/:id" element={<UserworkDetail />} />
+        <Route path="/dashboard/manager/getmanagerworklog/:id" element={<ManagerkDetail />} />
+        <Route path="/dashboard/admin/getassignment/:id" element={<AssignmentDetail />} />
+
+
+
 
         {/* <Route path="/" element={<Login/>}/>
         <Route path="/register" element={<Register/>}/> */}

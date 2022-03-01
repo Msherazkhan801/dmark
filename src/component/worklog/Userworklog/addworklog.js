@@ -8,7 +8,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-bootstrap";
 import "./Worklog.css"
 
-
 const Addworklog = () => {
   <ToastContainer position="top-center"
   autoClose={5000}

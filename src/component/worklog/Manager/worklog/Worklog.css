@@ -1,0 +1,70 @@
+.form-control {
+    height: 50px;
+    background-color: #f0f1f3;
+    border: unset;
+  }
+  select {
+    height: 50px;
+    background-color: #f0f1f3;
+    border: unset;
+    width: 100%;
+    padding: 0 9px;
+    color: lightslategrey;
+    font-size: 16px;
+  }
+  select:focus-visible {
+    outline: unset;
+  }
+  .react-date-picker__wrapper {
+    width: 280px;
+    background-color: #f0f1f3;
+    border: unset !important;
+    height: 50px;
+    padding: 0 8px;
+  }
+  textarea {
+    background-color: #f0f1f3;
+    border: unset !important;
+    width: 100%;
+  }
+  textarea:focus-visible {
+    outline: none;
+    padding: 8px;
+  }
+  
+  /* student detail css  */
+  .student-data li {
+    display: flex;
+    margin-bottom: 10px;
+  }
+  .student-data li span {
+    width: 30%;
+    display: inline-block;
+  }
+  .student-data li h6 {
+    width: 70%;
+    display: inline-block;
+    text-align: left;
+  }
+  .student-data li .student-value {
+    font-weight: 600;
+  }
+  .btnhover{
+    border: none;
+  }
+  .btnhover:hover{
+    background: rgb(14, 14, 14);
+    color: #f0f1f3;
+  }
+  .fontchange{
+    font-weight: 400;
+  color: black; 
+  width: 100%;
+  /* background-color: aqua; */
+  }
+  .pic {
+    align-items: center;
+    margin-left: 384px;
+    
+  }
+  

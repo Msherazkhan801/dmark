@@ -1,18 +1,17 @@
 import {
-    FETCH_USERS_PENDING,
-    FETCH_USERS_ERR,
-    FETCH_USERS_SUCCESS,
-  } from "./Constant";
-  import { db } from "../../Firebase";
+    ADMIN_SUCCESS,
+    ADMIN_PENDING,
+    ADMIN_FAILED,
+} from "../Constant";
+  import { db } from "../../../Firebase";
   import {
     collection,
     onSnapshot,
     
   } from "firebase/firestore";
   
-  const fetchAllusers = () => {
-    const collectionRef = collection(db, "userworklog");
-    // const q = query(collectionRef, orderBy("createdAt", "asc"));
+  const fetchAllassignment = () => {
+    const collectionRef = collection(db, "Admin_Assignment");
     const unsub = (dispatch) => onSnapshot(
       collectionRef,
       (snapshot) => {
@@ -20,7 +19,7 @@ import {
           const updateSnap = snapshot.docs.map((doc) => {
             return { ...doc.data(), id: doc.id };
           });
-        //   console.log("udpatedSnap of User", updateSnap);
+     
           dispatch(getUser(updateSnap));
         }
       },
@@ -35,7 +34,7 @@ import {
   /////////useparams//////////
   
    export const getUsers = () => {
-    const collectionRef = collection(db, "userworklog");
+    const collectionRef = collection(db, "Admin_Assignment");
     const unsub = (dispatch) => onSnapshot(
       collectionRef,
       (snapshot) => {
@@ -57,22 +56,22 @@ import {
   
   const getUser = (updateSnap) => {
     return {
-      type: FETCH_USERS_SUCCESS,
+      type: ADMIN_SUCCESS,
       payload: updateSnap,
     };
   };
   
   const getUserPending = () => {
     return {
-      type: FETCH_USERS_PENDING,
+      type: ADMIN_PENDING,
     };
   };
   
   const getUserErr = () => {
     return {
-      type: FETCH_USERS_ERR,
+      type: ADMIN_FAILED,
     };
   };
   
-  export { fetchAllusers, getUser, getUserErr, getUserPending };
+  export { fetchAllassignment, getUser, getUserErr, getUserPending };
   

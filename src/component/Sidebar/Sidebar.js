@@ -6,7 +6,7 @@ export const Sidebar = () => {
   const [a, sa] = useState(false);
 
   return (
-    <div className="sidebar">
+    <div className="sidebar ">
       <ul className="sidebar-list">
         <li>
           <a
@@ -84,10 +84,10 @@ export const Sidebar = () => {
         <div className="collapse" id="collapseExample2">
           <ul className="dropdown-container">
             <li>
-              <Link to="/addteacher">Add Manager</Link>
+              <Link to="/dashboard/manager/addworklog">Add Manager-Work</Link>
             </li>
             <li>
-              <Link to="/teachers">Total Manager</Link>
+              <Link to="/dashboard/manager/getmanagerworklog">Total Manager</Link>
             </li>
           </ul>
         </div>
@@ -109,10 +109,10 @@ export const Sidebar = () => {
         <div className="collapse" id="collapseExample">
           <ul className="dropdown-container">
             <li>
-              <Link to="/addclass">Add Assignment</Link>
+              <Link to="/dashboard/addassignment">Add Assignment</Link>
             </li>
             <li>
-              <Link to="/classes">Total Assignment</Link>
+              <Link to="/dashboard/admin/getassignment">Total Assignment</Link>
             </li>
           </ul>
         </div>

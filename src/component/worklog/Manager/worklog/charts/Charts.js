@@ -2,7 +2,7 @@ import React from "react";
 import "chart.js/auto";
 import { Doughnut } from "react-chartjs-2";
 
-const Charts = () => {
+const Charts = (props) => {
   return (
     <div>
       <Doughnut
@@ -11,9 +11,9 @@ const Charts = () => {
           datasets: [
             {
               data: [
-                "900" , "500" 
+                "1500" , "300" 
               ],
-              backgroundColor: ["#76B2E7", "#cf1322"],
+              backgroundColor: ["#009933", " #ff1a1a"],
               borderColor: ["#76B2E7",  "#cf1322"],
               borderWidth: 1,
             },
