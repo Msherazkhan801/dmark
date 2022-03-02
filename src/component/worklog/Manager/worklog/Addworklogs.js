@@ -134,21 +134,6 @@ const Addworklogs = () => {
                 rows="6"
               ></textarea>
             </div>
-            <div
-              className="col-md-7 form-group"
-              style={{ marginTop: "30px" }}
-            >
-              <input
-                type="file"
-                className="form-control"
-                style={{ background: "transparent" }}
-                onChange={(e)=>{
-                 if(e.target.files[0]){
-                  //  setImage(e.target.files[0])
-                 }
-                }}
-              />
-            </div>
           </div>
           <button
             className="btn btn-success text-white btnhover"

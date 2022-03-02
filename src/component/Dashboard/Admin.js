@@ -1,9 +1,30 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import "font-awesome/css/font-awesome.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUsers, faMoneyBill, faPaperPlane, faNewspaper } from "@fortawesome/free-solid-svg-icons";
+import {fetchAllassignment} from "../../redux/action/AdminAction/GetAssingment"
+import { useDispatch,useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 export const Admin = () => {
+
+  
+  const dispatch = useDispatch();
+  const totalUsers=useSelector((state)=>state?.admindata?.allAssignment);
+
+  console.log("totalUsers...........", totalUsers);
+  // const [filterStudent, setFilterStudent] = useState([]);
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    dispatch(fetchAllassignment());
+  }, []);
+
+  useEffect(() => {
+    setData(totalUsers);
+    // console.log(data,"data....")
+  }, [totalUsers]);
+
+
   return (
     <div className="wrapper">
       <div className="admin">
@@ -134,7 +155,7 @@ export const Admin = () => {
             {/* <h4 className="my-4" style={{ color: "darkgray" }}></h4> */}
             <table
               className="table table-striped mx-auto"
-              style={{ maxWidth: "850px" }}
+              style={{ maxWidth: "1350px" }}
             >
               <thead>
                 <tr>
@@ -146,62 +167,23 @@ export const Admin = () => {
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Economy of Pakistan</td>
-                  <td>economy of Pakistan ....</td>
-                  <td>
-                   <i className="fa fa-eye ml-2" aria-hidden="true"></i>
-                  <i class="fa fa-pencil ml-2 "aria-hidden="true"></i>
-                  <i className="fa fa-trash ml-2" aria-hidden="true"></i>
-                  </td>
-
-
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td>Swot analytical</td>
-                  <td>SWOT (strengths, weaknesses..</td>
-                  <td>
-                   <i className="fa fa-eye ml-2" aria-hidden="true"></i>
-                  <i class="fa fa-pencil ml-2 "aria-hidden="true"></i>
-                  <i className="fa fa-trash ml-2" aria-hidden="true"></i>
-                  </td>
-
-
-                </tr>
-                {/* {totalClasses ? (
-                  totalClasses.map((element, i) => {
+              {data?.map((user, i ) => {
+                    
                     return (
-                      <tr key={i}> */}
-                        {/* <Link to="/"> */}
-{/* 
-                        <Link to="/singleclass">
-                          <td
-                            onClick={() => showSingleClass(element.id)}
-                            style={{ cursor: "pointer" }}
-                          >
-                            {element.classes}
-                          </td>
-                        </Link> */}
-                        {/* </Link> */}
-                      {/* </tr>
-                    );
-                  })
-                ) : (
-                  <h5>No Classes found</h5>
-                )} */}
-                {/* {totalSections ? (
-                  totalSections.map((sectionData, i) => {
-                    return (
-                      <tr key={i}>
-                        <td>{sectionData.sections}</td>
+                      <tr key={i} className="tabrow">
+                        <td>{i+1}</td>
+                        <td>{user.topic}</td>
+                        <td >{user.discrip}</td>
+                        <td>
+                        <Link to={`/dashboard/admin/getassignment/${user.id}`} style={{color:"black"}}> <i className="fa fa-eye ml-2" aria-hidden="true"></i></Link>
+                      <i class="fa fa-pencil ml-2 " aria-hidden="true"></i>
+                      <i className="fa fa-trash ml-2" aria-hidden="true"></i>
+                    </td>
                       </tr>
                     );
-                  })
-                ) : (
-                  <h5>No Classes found</h5>
-                )} */}
+                  })}
+             
+                
               </tbody>
             </table>
           </div>

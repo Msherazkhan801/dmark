@@ -9,7 +9,7 @@ export const Navbar = () => {
     <div>
       <nav className="navbar navbar-expand-md p-0">
         <Link
-          className="navbar  navbar-brand p-0 "
+          className="navbar   p-0 "
           to="/"
           style={{ 
              fontSize: "26px", fontWeight: "600",
@@ -17,7 +17,7 @@ export const Navbar = () => {
           }}
         >
           {/* <img src={logo} alt="logo"     style={{width:"80px",height:"50px"  }}/> */}
-                <h3 style={{marginLeft:"30px"}}>D-mark </h3>
+                <h3 style={{marginLeft:"30px",width:"100px"}}>D-mark </h3>
         </Link>
         <button
           className="navbar-toggler"

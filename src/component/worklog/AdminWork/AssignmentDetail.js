@@ -63,7 +63,7 @@ export const AssignmentDetail = () => {
                                             <h6 className="student-value">{findObj.topic}</h6>
                                         </li>
                                         <li>
-                                            <span className="student-property" style={{ color: "#ff7100" }}>WordCount:</span>
+                                            <span className="student-property" style={{ color: "#ff7100" }}> Total WordCount:</span>
                                             <h6 className="student-value">{findObj.wordcount}</h6>
                                         </li>
                                         <li>
@@ -75,7 +75,7 @@ export const AssignmentDetail = () => {
                                             <h4 className="student-value" style={{ color: "red" }} >{findObj.deadline}</h4>
                                         </li>
                                         <li>
-                                            <span className="student-property">Discription:</span>
+                                            <span className="student-property">Instruction:</span>
                                             <h6 className=" fontchange  ">{findObj.discrip}</h6>
                                         </li>
                                     </ul>

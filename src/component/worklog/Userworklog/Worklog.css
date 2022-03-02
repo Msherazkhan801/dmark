@@ -51,3 +51,10 @@
     background: rgb(14, 14, 14);
     color: #f0f1f3;
   }
+  .backgred{
+    /* background-color: red; */
+    color: #ff0202;
+    font-size: medium;
+    font-weight: bold;
+ 
+  }

@@ -76,7 +76,9 @@ import { Link } from "react-router-dom";
             </div>
             <table
               className="table table-striped mx-auto"
-              style={{  marginTop: "30px" ,maxWidth:"1000px"}}
+              style={{  marginTop: "30px" 
+              // ,maxWidth:"1350px"
+            }}
             >
               <thead>
                 <tr>

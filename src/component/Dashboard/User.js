@@ -4,19 +4,122 @@ import { useNavigate,Link } from 'react-router-dom'
 import Charts from "../worklog/Userworklog/charts/Charts"
 import { fetchAllusers } from "../../redux/action/GetworkAction"
 import { useDispatch, useSelector } from "react-redux";
-import { color } from '@mui/system';
+import { DataGrid } from '@mui/x-data-grid';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import EditIcon from '@material-ui/icons/Edit';
+import { makeStyles } from '@material-ui/core/styles';
+import { bgcolor } from '@mui/system';
+import "./Dashboard.css"
 const User = () => {
   const [data, setData] = useState([]);
+  const Navigate=useNavigate();
+  const useStyles = makeStyles((theme) => ({
+    button: {
+      margin: theme.spacing(),
+      color:"white",
+      // background:"",
+   
+      
+    },
+  }));
+const classes = useStyles();
+////////////////
+const columns = [
+  // { field: 'id', headerName: '', width: 0 },
+  { field: 'fullName', headerName: 'Employee Name', 
+  renderCell: ({value,id}) => {
+    // console.log(cellValues);
+    return(
+    <Link to={`/dashboard/user/${id}`}> 
+    <p className="value" style={{color:"black", }} >{value}</p>
+    </Link>
+    )
+  },
+  
+  width: 250 },
+  
+  { field: 'AssignmentTopic', headerName: 'Assignment Topic', width: 250 },
+  // { field: 'AssignmentNo', headerName: 'AssignmentNo', width: 250 },
+  { field: 'WordCount', headerName: 'WordCount',
+  renderCell: ({value,id}) => {
+    // console.log(cellValues);
+    return(
+     
+    <p className={value < 1200 ? "bgred" : "bgwhite" }  >{value}</p>
+    
+    )},
+  width: 100 },
+  { field: 'Submission', headerName: 'Submission Date', width: 150 },
+  // { field: 'deadline', headerName: 'Deadline', width: 150 },
+  // { field: 'description', headerName: 'Descripotion', width: 200 },
+
+
+
+
+
+  
+  {
+    field: "Action",  width: 200,
+    renderCell: (cellValues) => {
+      return (
+        <>        <IconButton
+        aria-label="view" size="large"
+          // variant="contained"
+          color="default"
+          onClick={() => Navigate(`/dashboard/user/${cellValues.id}`)}
+          fontSize="inherit"  
+        >
+        <VisibilityIcon fontSize="inherit" />
+        </IconButton>
+        
+        <IconButton
+        aria-label="delete" size="large"
+          // variant="contained"
+          color="error"
+          // onClick={() => deletHandle(cellValues.id)}
+          fontSize="inherit"  
+        >
+         <DeleteIcon fontSize="inherit" />
+        </IconButton>
+ 
+        <IconButton
+        aria-label="Edit" size="large"
+          // variant="contained"
+          color="default"
+          // onClick={() => deletHandle(cellValues.id)}
+          fontSize="inherit"  
+        >
+         <EditIcon fontSize="inherit" />
+        </IconButton>
+
+
+        </>
+
+      );
+    }
+  }
+  
+  
+  ]
+
   const dispatch = useDispatch();
   const totalUsers = useSelector((state) => state.userworkdata?.alluserwork);
- const navigate= useNavigate()
+  const rows =totalUsers?.map((row,ind)=>({
+    id:row.id,
+   fullName:row.username,
+   AssignmentTopic:row.topic,
+   WordCount:row.wordcount,
+   Submission: row.date,  
+ }))
    useEffect(() => {
     dispatch(fetchAllusers());
   }, []);
 
   useEffect(() => {
     setData(totalUsers);
-    // console.log(data,"data....")
+    
   }, [totalUsers]);
 
   return (
@@ -24,63 +127,23 @@ const User = () => {
       <div className="student-form">
         <div className="card">
           <div className="card-body">
-            <h4 className="my-4" style={{ color: "darkgray" }}>
+            <h4 className="my-2" style={{ color: "darkgray" }}>
               User  Dashboard</h4>
-            {/* <h4 className="my-4" style={{ color: "darkgray" }}></h4> */}
-            <Link to="/dashboard/addworklog"
-              className="btn btn-success text-white">
-              Add your WordCount
-            </Link>
+              <div style={{ height: 450, width: '100%' ,marginTop:"5px" }}>
+     <DataGrid
+      rows={rows}
+      columns={columns}
+      pageSize={10}
+      rowsPerPageOptions={[10]}
+      checkboxSelection
+    // onSelectionModelChange={(id)=>{
+    //   setMail(id)
+    
+    // }}
 
-            <Link to=""
-              className="btn btn-warning ml-3 text-white">
-              Pick your Assignment</Link>
-            <table
-              className="table table-striped mx-auto my-3"
-              style={{ maxWidth: "1000px" }}
-            >
-              <thead style={{ background: "black", color: "white" }}>
-                <tr>
-                  <th scope="col">S.No</th>
-                  <th scope="col">Employee Name</th>
-                  <th scope="col">Assignment Topic</th>
-                  <th scope="col">Assignment No</th>
-                  <th scope="col">WordCount</th>
-                  <th scope="col">Submission Date</th>
-                  <th scope="col">Deadline</th>
-                  <th scope="col">Discription</th>
-                  <th scope="col">Action</th>
-
-                </tr>
-              </thead>
-              <tbody>
-
-                {data?.map((user, i) => {
-
-                  // console.log(totalUsers,"data///")
-                  return (
-                    <tr key={i}>
-                      <td>{i + 1}</td>
-                      <td><Link to={`/dashboard/user/${user.id}`} style={{color:"black"}}>{user.username}</Link></td>
-                      <td>{user.topic}</td>
-                      <td>{user.assignNo}</td>
-                      <td>{user.wordcount}</td>
-                      <td>{user.date}</td>
-                      <td>{user.deadline}</td>
-                      <td>{user.discrip}</td>
-                      <td>
-                        <i className="fa fa-eye ml-2" aria-hidden="true"></i>
-                        <i class="fa fa-pencil ml-2 " aria-hidden="true"></i>
-                        <i className="fa fa-trash ml-2" aria-hidden="true"></i>
-                      </td>
-                    </tr>
-                  );
-                })}
-                <tr></tr>
-              </tbody>
-            </table>
-
-            <Charts />
+      
+    />
+  </div>
           </div>
         </div>
       </div>
@@ -90,4 +153,27 @@ const User = () => {
 }
 
 export default User
-////////////////
+///////////////////////////////////
+
+
+
+            
+
+
+
+      
+
+// const deletHandle = (id) => {
+//   dispatch(DeleteMail(id));
+//   alert("Are you sure to delete Mail");
+//   dispatch(LeaveInbox());
+
+// }
+// ///////////////
+// const deletCustomerbyIds=()=>{
+// dispatch(bulkDelete(mail));
+// alert("Are you sure to delete");
+
+// }
+
+

@@ -1,0 +1,16 @@
+.bgred{
+    /* background-color: red; */
+    color: #ff0202;
+    font-size: medium;
+    font-weight: bold;
+    border-radius: 5px;
+border: 0.5px solid red;
+    /* font-family: fantasy; */
+    margin-top: 5px;
+    text-align: center;
+}
+.bgwhite{
+    /* background-color: #015001; */
+    color: rgb(0, 0, 0);
+    font-size: medium;
+}

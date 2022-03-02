@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
-
+import "../../App.css"
 export const Sidebar = () => {
   const [a, sa] = useState(false);
 
@@ -55,15 +55,18 @@ export const Sidebar = () => {
         </li>
         <div className="collapse" id="collapseExample1">
           <ul className="dropdown-container">
+          <li>
+              <Link to="/dashboard/admin/getassignment">Pick New Assignment</Link>
+            </li>
             <li>
-              <Link to="/addstudent">Add User</Link>
+              <Link to="/dashboard/addworklog">Add Userworklog</Link>
             </li>
             <li>
               <Link to="/dashboard/user/getworklog">Total User</Link>
             </li>
-            <li>
+            {/* <li>
               <Link to="/studentdetail">User Detail</Link>
-            </li>
+            </li> */}
           </ul>
         </div>
 
@@ -83,6 +86,9 @@ export const Sidebar = () => {
         </li>
         <div className="collapse" id="collapseExample2">
           <ul className="dropdown-container">
+          <li>
+              <Link to="/dashboard/admin/getassignment">Pick New Assignment</Link>
+            </li>
             <li>
               <Link to="/dashboard/manager/addworklog">Add Manager-Work</Link>
             </li>
@@ -91,7 +97,7 @@ export const Sidebar = () => {
             </li>
           </ul>
         </div>
-      
+
         <li>
           <a
             data-toggle="collapse"
@@ -114,23 +120,9 @@ export const Sidebar = () => {
             <li>
               <Link to="/dashboard/admin/getassignment">Total Assignment</Link>
             </li>
+
           </ul>
         </div>
-        <li>
-          <Link to="#">Subject</Link>
-        </li>
-        <li>
-          <Link to="#">Exam Paper</Link>
-        </li>
-        <li>
-          <Link to="#">Research Assignment</Link>
-        </li>
-        <li>
-          <Link to="#">Design Assignment </Link>
-        </li>
-        <li>
-          <Link to="#">Account</Link>
-        </li>
       </ul>
     </div>
   );

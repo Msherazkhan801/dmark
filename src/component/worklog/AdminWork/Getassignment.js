@@ -4,6 +4,7 @@ import {fetchAllassignment} from "../../../redux/action/AdminAction/GetAssingmen
 import { useDispatch,useSelector } from "react-redux";
 import { Link } from "react-router-dom";
  const Getassignment = () => {
+   
   const dispatch = useDispatch();
   const totalUsers=useSelector((state)=>state?.admindata?.allAssignment);
 

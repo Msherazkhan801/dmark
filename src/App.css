@@ -16,7 +16,7 @@ a {
 }
 .app {
   background-color: #f0f1f3 !important;
-  min-height: 842px;
+  min-height: 89vh;
 }
 nav {
   height: 70px;
@@ -48,6 +48,7 @@ nav {
 .sidebar-list {
   width: 244px;
   background-color: #042954;
+  height: 89vh;
 }
 .sidebar-list li {
   padding: 16px 53px;
