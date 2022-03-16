@@ -4,6 +4,7 @@ import {addAssignmentRecord} from "../../../redux/action/AdminAction/Addassignme
 import { useDispatch, useSelector } from 'react-redux';
 // import { dbstorage } from '../../../../Firebase';
 import { toast } from 'react-toastify';
+import { Link } from 'react-router-dom';
 
 
 const Addassignment = () => {
@@ -17,7 +18,7 @@ const Addassignment = () => {
  
   const dispatch=useDispatch();
   const data=useSelector((state)=>state?.allAssignment?.admindata);
-  console.log(data ,"data test")
+  // console.log(data ,"data test")
 
   const adduserwork = (e) => {
     e.preventDefault();
@@ -28,11 +29,15 @@ const Addassignment = () => {
   return (
   
     <div className="wrapper">
+
     <h4 className="my-4" style={{ color: "darkgoldenrod" }}>
    Assignments
     </h4>
     <div className="student-form">
       <div className="card">
+      <Link to="/dashboard">
+        <i className="fa fa-arrow-circle-o-left " aria-hidden="true" style={{ fontSize: "52px", color: "#597759" }}>
+          </i></Link>
         <div
           className="card-body"
           style={{ boxShadow: "0px 10px 20px 0px rgb(229 229 229 / 75%)" }}

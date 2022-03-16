@@ -17,7 +17,7 @@ export const Navbar = () => {
           }}
         >
           {/* <img src={logo} alt="logo"     style={{width:"80px",height:"50px"  }}/> */}
-                <h3 style={{marginLeft:"30px",width:"100px"}}>D-mark </h3>
+                <h3 style={{marginLeft:"30px",width:"100px"}}> <span style={{fontFamily:"cursive"}}>D</span>-mark </h3>
         </Link>
         <button
           className="navbar-toggler"

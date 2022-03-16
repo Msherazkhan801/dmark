@@ -7,6 +7,7 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-bootstrap";
 import "./Worklog.css"
+import { useNavigate ,Link} from 'react-router-dom';
 
 const Addworklogs = () => {
   <ToastContainer position="top-center"
@@ -14,6 +15,7 @@ const Addworklogs = () => {
   hideProgressBar={false}
   newestOnTop={false}
   />
+  const Navigate=useNavigate();
 
     const[username ,setUsername]=useState("")
     const[topic ,setTopic]=useState("")
@@ -25,7 +27,7 @@ const Addworklogs = () => {
  
   const dispatch=useDispatch();
   const data=useSelector((state)=>state?.allmanagerwork?.managerdata);
-  console.log(data ,"data test")
+  // console.log(data ,"data test")
 
   const adduserwork = (e) => {
     e.preventDefault();
@@ -37,7 +39,7 @@ const Addworklogs = () => {
   
     <div className="wrapper">
     <h4 className="my-4" style={{ color: "darkgoldenrod" }}>
-   Assignments
+    Manager Assignments
     </h4>
     <div className="student-form">
       <div className="card">
@@ -45,6 +47,9 @@ const Addworklogs = () => {
           className="card-body"
           style={{ boxShadow: "0px 10px 20px 0px rgb(229 229 229 / 75%)" }}
         >
+          <Link to="/dashboard/manager/getmanagerworklog">
+        <i className="fa fa-arrow-circle-o-left " aria-hidden="true" style={{ fontSize: "52px", color: "#597759" }}>
+          </i></Link>
           <h4 className="my-4" style={{ color: "darkgray" }}>
             Add WordCount
           </h4>
@@ -140,6 +145,14 @@ const Addworklogs = () => {
             onClick={adduserwork}
           >
             Submit
+          </button>
+          <button
+            className="btn btn-secondary ml-3 text-white btnhover"
+            onClick={()=>{
+              Navigate("/dashboard/user/getworklog")
+            }}
+          >
+           <i className="fa fa-eye " aria-hidden="true"> </i>View User Worklog
           </button>
         </div>
       </div>

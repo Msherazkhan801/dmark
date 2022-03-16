@@ -2,9 +2,10 @@ import {
     USERS_ERR,
     USERS_PENDING,
     USERS_SECCESS,
+   
 } from "./Constant";
 import { db,dbstorage } from "../../Firebase";
-import { addDoc, collection } from "firebase/firestore";
+import { addDoc, collection} from "firebase/firestore";
 import { toast } from "react-toastify";
 
 const addUserRecord =
@@ -27,6 +28,9 @@ const addUserRecord =
         // emptyState();
     };
 
+
+
+
 const worklog_success = () => {
     return {
         type: USERS_SECCESS,
@@ -42,24 +46,6 @@ const worklog_err = () => {
         type: USERS_ERR,
     };
 };
-
-
-// const imgUpload=({image})=>{
-//     const uploadtask= dbstorage.ref(`images/${image.name}`).put(image);
-//     uploadtask.on(
-//         "state changed",
-//         snapshot=>{},
-//         error=>{console.log(error)},
-//         ()=>{
-//             dbstorage.ref("images")
-//             .child(image.name)
-//             .getDownloadURL().then(url=>{console.log("url",url);
-//         })
-//         }
-
-//     )
-// }
-
 
 
 export { addUserRecord, worklog_pending, worklog_success, worklog_err };

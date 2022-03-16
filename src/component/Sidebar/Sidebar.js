@@ -33,9 +33,7 @@ export const Sidebar = () => {
             <li>
               <Link to="/dashboard/user">User</Link>
             </li>
-            <li>
-              <Link to="/dashboard/parents">Emergency Relatives</Link>
-            </li>
+           
           </ul>
         </div>
 

@@ -71,7 +71,7 @@ import { Link } from "react-router-dom";
               </div>
               <div className="col-md-2">     
                   <button type="button" className="btn btn-labeled btn-secondary"     style={{ width: "90px", height: "50px", marginTop:"30px", color: "white" }}>
-                    <span class="btn-label"><i class="fa fa-search"></i></span> Search </button>
+                    <span className="btn-label"><i className="fa fa-search"></i></span> Search </button>
               </div>
             </div>
             <table
@@ -110,7 +110,7 @@ import { Link } from "react-router-dom";
                       <td >{user.discrip}</td>
                       <td>
                       <Link to={`/dashboard/manager/getmanagerworklog/${user.id}`} style={{color:"black"}}> <i className="fa fa-eye ml-2" aria-hidden="true"></i></Link>
-                    <i class="fa fa-pencil ml-2 " aria-hidden="true"></i>
+                    <i className="fa fa-pencil ml-2 " aria-hidden="true"></i>
                     <i className="fa fa-trash ml-2" aria-hidden="true"></i>
                   </td>
                     </tr>

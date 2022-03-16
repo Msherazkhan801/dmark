@@ -5,16 +5,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { dbstorage } from '../../../Firebase';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { ToastContainer } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 import "./Worklog.css"
 
 const Addworklog = () => {
-  <ToastContainer position="top-center"
-  autoClose={5000}
-  hideProgressBar={false}
-  newestOnTop={false}
-  />
-
     const[username ,setUsername]=useState("")
     const[topic ,setTopic]=useState("")
     const[assignNo ,setAssignNo]=useState("")
@@ -23,52 +17,31 @@ const Addworklog = () => {
     const[date ,setDate]=useState("")
     const[discrip ,setDiscrip]=useState("")
     const[image,setImage]=useState(null)
-
-    ///////////////image upload///////////////
-   /* const imgUpload=()=>{
-      const uploadtask= dbstorage.ref(`images/${image.name}`).put(image);
-      uploadtask.on(
-          "state changed",
-          snapshot=>{},
-          error=>{console.log(error)},
-          ()=>{
-              dbstorage.ref("images")
-              .child(image.name)
-              .getDownloadURL().then(url=>{console.log("url",url);
-          })
-          }
-  
-      )
-  }
-  */
-//////////////////////////////////////////////
-
-
  
   const dispatch=useDispatch();
   const data=useSelector((state)=>state?.alluserwork?.userworkdata);
-  console.log(data ,"data test")
+  // console.log(data ,"data test")
 
   const adduserwork = (e) => {
     e.preventDefault();
     toast.success("successfuly submited");
-    // alert("Are you sure to submit your data?")
-    // console.log("image path",image);
-    // imgUpload();
     dispatch(addUserRecord({topic,assignNo,wordcount,deadline,date,discrip,username}));
   };
   return (
   
     <div className="wrapper">
     <h4 className="my-4" style={{ color: "darkgoldenrod" }}>
-   Assignments
+  User Assignments
     </h4>
     <div className="student-form">
       <div className="card">
         <div
           className="card-body"
           style={{ boxShadow: "0px 10px 20px 0px rgb(229 229 229 / 75%)" }}
-        >
+        ><Link to="/dashboard/manager/getmanagerworklog">
+        <i className="fa fa-arrow-circle-o-left " aria-hidden="true" style={{ fontSize: "52px", color: "#597759" }}>
+          </i></Link>
+          
           <h4 className="my-4" style={{ color: "darkgray" }}>
             Add WordCount
           </h4>

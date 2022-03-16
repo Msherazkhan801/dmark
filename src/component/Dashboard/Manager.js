@@ -1,110 +1,169 @@
-import React from 'react'
-import { Link } from 'react-router-dom';
-import Charts from '../worklog/Manager/worklog/charts/Charts';
+// import "./ClassStyle.css";
+import React, { useEffect, useState } from 'react'
+import { useNavigate,Link } from 'react-router-dom'
+// import Charts from "../worklog/Userworklog/charts/Charts"
+import { deletManagerRecord, fetchAllmanager } from "../../redux/action/ManagerGetAction"
+import { useDispatch, useSelector } from "react-redux";
+import { DataGrid } from '@mui/x-data-grid';
+import IconButton from '@mui/material/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import VisibilityIcon from '@material-ui/icons/Visibility';
+import EditIcon from '@material-ui/icons/Edit';
+import { makeStyles } from '@material-ui/core/styles';
+import "./Dashboard.css"
+import { toast } from 'react-toastify';
 const Manager = () => {
-  return  (
-      <div className="wrapper">
-        <div className="student-form">
-          <div className="card">
-            <div className="card-body">
-              <h4 className="my-4" style={{ color: "darkgray" }}>
-                Manager  Dashboard</h4>
-              {/* <h4 className="my-4" style={{ color: "darkgray" }}></h4> */}
-              <Link to="/dashboard/manager/addworklog"
-                className="btn btn-success text-white">
-                Add your WordCount
-              </Link>
-              <Link to=""
-                className="btn btn-warning ml-3 text-white">
-                Pick your Assignment</Link>
-              <table
-                className="table table-striped mx-auto mt-3"
-                style={{ maxWidth: "850px" }}
-              >
-                <thead>
-                  <tr>
-                    <th scope="col">S.No</th>
-                    <th scope="col" className="mx-5" >Assignments Topic</th>
-                    <th scope="col">Assignments Discription</th>
-                    <th scope="col">WordCount</th>
-                    <th scope="col">Assignments date</th>
-                    <th scope="col"> Action</th>
+  const [data, setData] = useState([]);
+  const Navigate=useNavigate();
+  const useStyles = makeStyles((theme) => ({
+    button: {
+      margin: theme.spacing(),
+      color:"white",
+      // background:"",
+   
+      
+    },
+  }));
+const classes = useStyles();
+////////////////
+const columns = [
+  // { field: 'id', headerName: '', width: 0 },
+  { field: 'fullName', headerName: 'Employee Name', 
+  renderCell: ({value,id}) => {
+    // console.log(cellValues);
+    return(
+    <Link to={`/dashboard/user/${id}`}> 
+    <p className="value" style={{color:"black", }} >{value}</p>
+    </Link>
+    )
+  },
   
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>1</td>
-                    <td>Economy of Pakistan</td>
-                    <td>economy of Pakistan ....</td>
-                    <td>2400</td>
-                    <td>01/01/2022</td>
+  width: 250 },
+  
+  { field: 'AssignmentTopic', headerName: 'Assignment Topic', width: 250 },
+  // { field: 'AssignmentNo', headerName: 'AssignmentNo', width: 250 },
+  { field: 'WordCount', headerName: 'WordCount',
+  renderCell: ({value,id}) => {
+    // console.log(cellValues);
+    return(
+     
+    <p className={value < 1200 ? "bgred" : "bgwhite" }  >{value}</p>
+    
+    )},
+  width: 100 },
+  { field: 'Submission', headerName: 'Submission Date', width: 150 },
+  // { field: 'deadline', headerName: 'Deadline', width: 150 },
+  // { field: 'description', headerName: 'Descripotion', width: 200 },
+
+
+
+
+
+  
+  {
+    field: "Action",  width: 200,
+    renderCell: (cellValues) => {
+      return (
+        <>        <IconButton
+        aria-label="view" size="large"
+          // variant="contained"
+          color="default"
+        
+          onClick={() =>Navigate(`/dashboard/manager/getmanagerworklog/${cellValues.id}`)}
+          fontSize="inherit"  
+        >
+        <VisibilityIcon fontSize="inherit" />
+        </IconButton>
+        
+        <IconButton
+        aria-label="delete" size="large"
+          // variant="contained"
+          color="error"
+          onClick={() => deletHandle(cellValues.id)}
+          fontSize="inherit"  
+        >
+         <DeleteIcon fontSize="inherit" />
+        </IconButton>
+ 
+        <IconButton
+        aria-label="Edit" size="large"
+          // variant="contained"
+          color="default"
+          // onClick={() => deletHandle(cellValues.id)}
+          fontSize="inherit"  
+        >
+         <EditIcon fontSize="inherit" />
+        </IconButton>
+
+
+        </>
+
+      );
+    }
+  }
   
   
-                    <td>
-                      <i className="fa fa-eye ml-2" aria-hidden="true"></i>
-                      <i class="fa fa-pencil ml-2 " aria-hidden="true"></i>
-                      <i className="fa fa-trash ml-2" aria-hidden="true"></i>
-                    </td>
+  ]
+
+  const dispatch = useDispatch();
+  const totalUsers=useSelector((state)=>state?.managerdata?.allmanagerwork);
+
+  const rows =totalUsers?.map((row,ind)=>({
+    id:row.id,
+   fullName:row.username,
+   AssignmentTopic:row.topic,
+   WordCount:row.wordcount,
+   Submission: row.date,  
+ }))
+   useEffect(() => {
+    dispatch(fetchAllmanager());
+    
+  }, []);
+
+  useEffect(() => {
+    setData(totalUsers);
+    
+  }, [totalUsers]);
+
   
-  
-                  </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>Swot analytical</td>
-                    <td>SWOT (strengths, weaknesses..</td>
-                      <td>2200</td>
-                    <td>06/01/2022</td>
-  
-                    <td>
-                      <i className="fa fa-eye ml-2" aria-hidden="true"></i>
-                      <i class="fa fa-pencil ml-2 " aria-hidden="true"></i>
-                      <i className="fa fa-trash ml-2" aria-hidden="true"></i>
-                    </td>
-  
-  
-                  </tr>
-                  {/* {totalClasses ? (
-                    totalClasses.map((element, i) => {
-                      return (
-                        <tr key={i}> */}
-                  {/* <Link to="/"> */}
-                  {/* 
-                          <Link to="/singleclass">
-                            <td
-                              onClick={() => showSingleClass(element.id)}
-                              style={{ cursor: "pointer" }}
-                            >
-                              {element.classes}
-                            </td>
-                          </Link> */}
-                  {/* </Link> */}
-                  {/* </tr>
-                      );
-                    })
-                  ) : (
-                    <h5>No Classes found</h5>
-                  )} */}
-                  {/* {totalSections ? (
-                    totalSections.map((sectionData, i) => {
-                      return (
-                        <tr key={i}>
-                          <td>{sectionData.sections}</td>
-                        </tr>
-                      );
-                    })
-                  ) : (
-                    <h5>No Classes found</h5>
-                  )} */}
-                </tbody>
-              </table>
-              <Charts/>
-            </div>
+const deletHandle = (id) => {
+  dispatch(deletManagerRecord(id));
+  alert("Are you sure to delete Manager worklog");
+  toast.success("deleted Successfully")
+  dispatch(fetchAllmanager());
+
+}
+  return (
+    <div className="wrapper">
+      <div className="student-form">
+        <div className="card">
+          <div className="card-body">
+          <Link to="/dashboard">
+        <i className="fa fa-arrow-circle-o-left " aria-hidden="true" style={{ fontSize: "32px", color: "#597759" }}>
+          </i></Link>
+            <h4 className="my-2" style={{ color: "darkgray" }}>
+              Manager Work Dashboard</h4>
+              <h5 className='my-2  text-center '>Manager wordcount and all assignment Detail</h5>
+              <div style={{ height: 500, width: '100%' ,marginTop:"5px" }}>
+     <DataGrid
+      rows={rows}
+      columns={columns}
+      pageSize={10}
+      rowsPerPageOptions={[10]}
+      checkboxSelection
+    // onSelectionModelChange={(id)=>{
+    //   setMail(id)
+    
+    // }}
+
+      
+    />
+  </div>
           </div>
         </div>
       </div>
-  
-    
+    </div>
+
   )
 }
 

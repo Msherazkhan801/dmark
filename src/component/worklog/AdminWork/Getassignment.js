@@ -4,11 +4,11 @@ import {fetchAllassignment} from "../../../redux/action/AdminAction/GetAssingmen
 import { useDispatch,useSelector } from "react-redux";
 import { Link } from "react-router-dom";
  const Getassignment = () => {
-   
+
   const dispatch = useDispatch();
   const totalUsers=useSelector((state)=>state?.admindata?.allAssignment);
 
-  console.log("totalUsers...........", totalUsers);
+  // console.log("totalUsers...........", totalUsers);
   const [filterStudent, setFilterStudent] = useState([]);
   const [data, setData] = useState([]);
 
@@ -72,12 +72,14 @@ import { Link } from "react-router-dom";
               </div>
               <div className="col-md-2">     
                   <button type="button" className="btn btn-labeled btn-secondary"     style={{ width: "90px", height: "50px", marginTop:"30px", color: "white" }}>
-                    <span class="btn-label"><i class="fa fa-search"></i></span> Search </button>
+                    <span className="btn-label"><i className="fa fa-search"></i></span> Search </button>
               </div>
             </div>
             <table
               className="table table-striped mx-auto"
-              style={{  marginTop: "30px" ,maxWidth:"1000px"}}
+              style={{  marginTop: "30px" 
+              // ,maxWidth:"1320px"
+            }}
             >
               <thead>
                 <tr>
@@ -104,7 +106,7 @@ import { Link } from "react-router-dom";
                       <td >{user.discrip}</td>
                       <td>
                       <Link to={`/dashboard/admin/getassignment/${user.id}`} style={{color:"black"}}> <i className="fa fa-eye ml-2" aria-hidden="true"></i></Link>
-                    <i class="fa fa-pencil ml-2 " aria-hidden="true"></i>
+                    <i className="fa fa-pencil ml-2 " aria-hidden="true"></i>
                     <i className="fa fa-trash ml-2" aria-hidden="true"></i>
                   </td>
                     </tr>

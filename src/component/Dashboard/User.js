@@ -10,8 +10,12 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import EditIcon from '@material-ui/icons/Edit';
 import { makeStyles } from '@material-ui/core/styles';
-import { bgcolor } from '@mui/system';
+import {deletUserRecord} from "../../redux/action/GetworkAction"
 import "./Dashboard.css"
+import { ToastContainer,toast } from 'react-toastify';
+
+// import Login from "./Auth/login/index"
+import 'react-toastify/dist/ReactToastify.css';
 const User = () => {
   const [data, setData] = useState([]);
   const Navigate=useNavigate();
@@ -78,7 +82,7 @@ const columns = [
         aria-label="delete" size="large"
           // variant="contained"
           color="error"
-          // onClick={() => deletHandle(cellValues.id)}
+          onClick={() => deletHandle(cellValues.id)}
           fontSize="inherit"  
         >
          <DeleteIcon fontSize="inherit" />
@@ -115,6 +119,7 @@ const columns = [
  }))
    useEffect(() => {
     dispatch(fetchAllusers());
+    
   }, []);
 
   useEffect(() => {
@@ -122,14 +127,28 @@ const columns = [
     
   }, [totalUsers]);
 
+  
+const deletHandle = (id) => {
+  dispatch(deletUserRecord(id));
+  alert("Are you sure to delete User Worklog");
+  toast.success("deleted successfully")
+
+}
+
   return (
     <div className="wrapper">
       <div className="student-form">
+
         <div className="card">
           <div className="card-body">
+          <Link to="/dashboard">
+        <i className="fa fa-arrow-circle-o-left " aria-hidden="true" style={{ fontSize: "32px", color: "#597759" }}>
+          </i></Link>
             <h4 className="my-2" style={{ color: "darkgray" }}>
-              User  Dashboard</h4>
-              <div style={{ height: 450, width: '100%' ,marginTop:"5px" }}>
+              User Work Dashboard</h4>
+
+              <h5 className='my-2  text-center '>User wordcount and all assignment Detail</h5>
+              <div style={{ height: 500, width: '100%' ,marginTop:"5px" }}>
      <DataGrid
       rows={rows}
       columns={columns}
@@ -153,27 +172,3 @@ const columns = [
 }
 
 export default User
-///////////////////////////////////
-
-
-
-            
-
-
-
-      
-
-// const deletHandle = (id) => {
-//   dispatch(DeleteMail(id));
-//   alert("Are you sure to delete Mail");
-//   dispatch(LeaveInbox());
-
-// }
-// ///////////////
-// const deletCustomerbyIds=()=>{
-// dispatch(bulkDelete(mail));
-// alert("Are you sure to delete");
-
-// }
-
-

@@ -7,13 +7,10 @@ import { useDispatch,useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 export const Admin = () => {
 
+  const [data, setData] = useState([]);
   
   const dispatch = useDispatch();
   const totalUsers=useSelector((state)=>state?.admindata?.allAssignment);
-
-  console.log("totalUsers...........", totalUsers);
-  // const [filterStudent, setFilterStudent] = useState([]);
-  const [data, setData] = useState([]);
 
   useEffect(() => {
     dispatch(fetchAllassignment());
@@ -21,7 +18,6 @@ export const Admin = () => {
 
   useEffect(() => {
     setData(totalUsers);
-    // console.log(data,"data....")
   }, [totalUsers]);
 
 
@@ -176,7 +172,7 @@ export const Admin = () => {
                         <td >{user.discrip}</td>
                         <td>
                         <Link to={`/dashboard/admin/getassignment/${user.id}`} style={{color:"black"}}> <i className="fa fa-eye ml-2" aria-hidden="true"></i></Link>
-                      <i class="fa fa-pencil ml-2 " aria-hidden="true"></i>
+                      <i className="fa fa-pencil ml-2 " aria-hidden="true"></i>
                       <i className="fa fa-trash ml-2" aria-hidden="true"></i>
                     </td>
                       </tr>

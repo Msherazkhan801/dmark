@@ -4,8 +4,7 @@ import { fetchAllassignment } from "../../../redux/action/AdminAction/GetAssingm
 
 import { useDispatch, useSelector } from "react-redux";
 import assignmentpic from "../../../Asset/assignment.jpg"
-
-
+import "../Userworklog/Worklog.css"
 export const AssignmentDetail = () => {
     const [pick,setPick]=useState("white")
     const [picktext,setPicktext]=useState("Assignment Details")
@@ -47,7 +46,7 @@ export const AssignmentDetail = () => {
                         </h4>
                         <div className="row">
                             <div className="col-md-4 col-lg-10 ">
-                                <img src={assignmentpic} alt="manager" className="pic" />
+                                <img src={assignmentpic} alt="manager" className="pic mb-5" />
 
                             </div>
                             <div className="col-md-4 col-lg-12">
@@ -66,10 +65,7 @@ export const AssignmentDetail = () => {
                                             <span className="student-property" style={{ color: "#ff7100" }}> Total WordCount:</span>
                                             <h6 className="student-value">{findObj.wordcount}</h6>
                                         </li>
-                                        <li>
-                                            <span className="student-property" style={{ color: "green" }}>Submition Date</span>
-                                            <h6 className="student-value">{findObj.date}</h6>
-                                        </li>
+                                      
                                         <li>
                                             <span className="student-property" style={{ color: "red" }}>Deadline:</span>
                                             <h4 className="student-value" style={{ color: "red" }} >{findObj.deadline}</h4>
