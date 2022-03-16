@@ -1,8 +1,8 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState} from 'react'
 // import { Calender } from '../AdminWork/Calender';
 import {addUserRecord} from "../../../redux/action/UserAction"
 import { useDispatch, useSelector } from 'react-redux';
-import { dbstorage } from '../../../Firebase';
+// import { dbstorage } from '../../../Firebase';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Link } from 'react-router-dom';
@@ -16,10 +16,10 @@ const Addworklog = () => {
     const[deadline ,setDeadline]=useState("")
     const[date ,setDate]=useState("")
     const[discrip ,setDiscrip]=useState("")
-    const[image,setImage]=useState(null)
+    // const[image,setImage]=useState(null)
  
   const dispatch=useDispatch();
-  const data=useSelector((state)=>state?.alluserwork?.userworkdata);
+  useSelector((state)=>state?.alluserwork?.userworkdata);
   // console.log(data ,"data test")
 
   const adduserwork = (e) => {

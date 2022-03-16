@@ -9,23 +9,13 @@ import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@material-ui/icons/Delete';
 import VisibilityIcon from '@material-ui/icons/Visibility';
 import EditIcon from '@material-ui/icons/Edit';
-import { makeStyles } from '@material-ui/core/styles';
+// import { makeStyles } from '@material-ui/core/styles';
 import "./Dashboard.css"
 import { toast } from 'react-toastify';
 const Manager = () => {
   const [data, setData] = useState([]);
   const Navigate=useNavigate();
-  const useStyles = makeStyles((theme) => ({
-    button: {
-      margin: theme.spacing(),
-      color:"white",
-      // background:"",
-   
-      
-    },
-  }));
-const classes = useStyles();
-////////////////
+
 const columns = [
   // { field: 'id', headerName: '', width: 0 },
   { field: 'fullName', headerName: 'Employee Name', 
@@ -77,7 +67,7 @@ const columns = [
         
         <IconButton
         aria-label="delete" size="large"
-          // variant="contained"
+
           color="error"
           onClick={() => deletHandle(cellValues.id)}
           fontSize="inherit"  
@@ -87,9 +77,7 @@ const columns = [
  
         <IconButton
         aria-label="Edit" size="large"
-          // variant="contained"
           color="default"
-          // onClick={() => deletHandle(cellValues.id)}
           fontSize="inherit"  
         >
          <EditIcon fontSize="inherit" />
@@ -108,7 +96,7 @@ const columns = [
   const dispatch = useDispatch();
   const totalUsers=useSelector((state)=>state?.managerdata?.allmanagerwork);
 
-  const rows =totalUsers?.map((row,ind)=>({
+  const rows =data?.map((row,ind)=>({
     id:row.id,
    fullName:row.username,
    AssignmentTopic:row.topic,
@@ -151,10 +139,6 @@ const deletHandle = (id) => {
       pageSize={10}
       rowsPerPageOptions={[10]}
       checkboxSelection
-    // onSelectionModelChange={(id)=>{
-    //   setMail(id)
-    
-    // }}
 
       
     />

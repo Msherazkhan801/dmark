@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../../App.css"
 export const Sidebar = () => {
-  const [a, sa] = useState(false);
+  // const [a, sa] = useState(false);
 
   return (
     <div className="sidebar ">

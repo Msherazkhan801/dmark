@@ -17,7 +17,7 @@ const Addassignment = () => {
     const[discrip ,setDiscrip]=useState("")
  
   const dispatch=useDispatch();
-  const data=useSelector((state)=>state?.allAssignment?.admindata);
+  useSelector((state)=>state?.allAssignment?.admindata);
   // console.log(data ,"data test")
 
   const adduserwork = (e) => {

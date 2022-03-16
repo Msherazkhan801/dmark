@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 const addAssignmentRecord =
     ({topic,assignNo,wordcount,deadline,discrip,}) => async (dispatch) => {
         
-        console.log("data", topic,assignNo,wordcount,deadline,discrip,);
+        // console.log("data", topic,assignNo,wordcount,deadline,discrip,);
 
         dispatch(worklog_pending());
         const collectionRef = collection(db, "Admin_Assignment");

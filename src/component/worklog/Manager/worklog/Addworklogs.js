@@ -1,8 +1,8 @@
-import React,{useState,useEffect} from 'react'
+import React,{useState,} from 'react'
 // import { Calender } from '../AdminWork/Calender';
 import {addManagerRecord} from "../../../../redux/action/ManagerAction"
 import { useDispatch, useSelector } from 'react-redux';
-import { dbstorage } from '../../../../Firebase';
+// import { dbstorage } from '../../../../Firebase';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from "react-bootstrap";
@@ -26,7 +26,7 @@ const Addworklogs = () => {
     const[discrip ,setDiscrip]=useState("")
  
   const dispatch=useDispatch();
-  const data=useSelector((state)=>state?.allmanagerwork?.managerdata);
+  useSelector((state)=>state?.allmanagerwork?.managerdata);
   // console.log(data ,"data test")
 
   const adduserwork = (e) => {

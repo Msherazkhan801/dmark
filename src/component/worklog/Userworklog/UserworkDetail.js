@@ -10,12 +10,12 @@ export const UserworkDetail = () => {
 
    const dispatch = useDispatch();
   const totalUsers = useSelector((state) => state.userworkdata?.alluserwork);
-  console.log("data" ,totalUsers);
+  // console.log("data" ,totalUsers);
   
   const findObj = totalUsers && totalUsers.length > 0 && totalUsers.find(item => {
     return item.id === id
   })
-  console.log("obj" ,findObj);
+  // console.log("obj" ,findObj);
 
   useEffect(() => {
     dispatch(fetchAllusers());

@@ -39,12 +39,12 @@ import {
   
 ///////////////////delet functionality//////////////////////////////////
 export const deletManagerRecord =(id) => async (dispatch) => {
-  console.log(id,'id')
+  // console.log(id,'id')
   dispatch(delete_pending());
   const collectionRef = collection(db, "managerworklog");
   console.log(collectionRef,'collectionRef')
   try {
-      const sending = await deleteDoc(doc(collectionRef, id));
+         await deleteDoc(doc(collectionRef, id));
       // console.log("sending", sending);
       dispatch(delete_success());
   } catch (error) {

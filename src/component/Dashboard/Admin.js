@@ -1,7 +1,7 @@
 import React,{useState,useEffect} from "react";
 import "font-awesome/css/font-awesome.min.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUsers, faMoneyBill, faPaperPlane, faNewspaper } from "@fortawesome/free-solid-svg-icons";
+import { faUsers, faMoneyBill,  faNewspaper } from "@fortawesome/free-solid-svg-icons";
 import {fetchAllassignment} from "../../redux/action/AdminAction/GetAssingment"
 import { useDispatch,useSelector } from "react-redux";
 import { Link } from "react-router-dom";

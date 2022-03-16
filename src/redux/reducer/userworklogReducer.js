@@ -1,7 +1,7 @@
 import {
     USERS_ERR,
     USERS_PENDING,
-    USERS_SECCESS,
+    // USERS_SECCESS,
     FETCH_USERS_SUCCESS,
 
 } from "../action/Constant";

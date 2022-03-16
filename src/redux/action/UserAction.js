@@ -4,7 +4,7 @@ import {
     USERS_SECCESS,
    
 } from "./Constant";
-import { db,dbstorage } from "../../Firebase";
+import { db } from "../../Firebase";
 import { addDoc, collection} from "firebase/firestore";
 import { toast } from "react-toastify";
 
